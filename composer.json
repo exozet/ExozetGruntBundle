@@ -10,8 +10,7 @@
         }
     ],
     "autoload":     {
-        "psr-0": { "Exozet\\GruntBundle": "" }
+        "psr-4": { "Exozet\\GruntBundle": "" }
     },
-    "target-dir": "Exozet/GruntBundle",
     "require": {}
 }
