@@ -1,0 +1,13 @@
+{
+    "name": "exozet/grunt-bundle",
+    "description": "Run npm, bower and grunt on cache warmup in symfony2.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GruntBundle Authors",
+            "homepage": "https://github.com/exozet/ExozetGruntBundle/graphs/contributors"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
