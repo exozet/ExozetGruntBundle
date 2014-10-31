@@ -3,6 +3,7 @@
     "type": "symfony-bundle",
     "description": "Run npm, bower and grunt on cache warmup in symfony2.",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "GruntBundle Authors",
@@ -10,7 +11,7 @@
         }
     ],
     "autoload":     {
-        "psr-4": { "Exozet\\GruntBundle": "" }
+        "psr-4": { "Exozet\\GruntBundle\\": "" }
     },
     "require": {}
 }
