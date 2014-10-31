@@ -8,6 +8,8 @@ This small bundle is meant to run the following steps, if the cache is cleaned a
 
 ## Usage
 
+Add `$bundles[] = new Exozet\GruntBundle\ExozetGruntBundle()` to your `AppKernel.php` (in the `dev`-if-block).
+
 If you have a `package.json`, `bower.json` and `Gruntfile.js` in your project, add the bundle to your project.
 
 As soon a you call
