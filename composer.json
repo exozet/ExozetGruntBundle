@@ -1,5 +1,6 @@
 {
     "name": "exozet/grunt-bundle",
+    "type": "symfony-bundle",
     "description": "Run npm, bower and grunt on cache warmup in symfony2.",
     "license": "MIT",
     "authors": [
@@ -8,6 +9,9 @@
             "homepage": "https://github.com/exozet/ExozetGruntBundle/graphs/contributors"
         }
     ],
-    "minimum-stability": "stable",
+    "autoload":     {
+        "psr-0": { "Exozet\\GruntBundle": "" }
+    },
+    "target-dir": "Exozet/GruntBundle",
     "require": {}
 }
