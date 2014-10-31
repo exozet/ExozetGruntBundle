@@ -1,0 +1,16 @@
+services:
+    grunt.cache_warmer:
+        class: Exozet\GruntBundle\CacheWarmer\GruntCacheWarmer
+        arguments:
+            - '@kernel'
+            - '@logger'
+        tags:
+            - { name: kernel.cache_warmer }
+
+parameters:
+    grunt.npm_binary_path: 'npm'
+    grunt.bower_binary_path: 'bower'
+    grunt.grunt_binary_path: 'LANG=en_US.UTF-8 grunt'
+    grunt.grunt_task: 'dev'
+    grunt.environments:
+        - dev
