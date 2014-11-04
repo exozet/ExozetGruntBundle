@@ -53,7 +53,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $this->logger->debug('GruntCacheWarmer: ' . $npmCommand);
 
             $process = new Process($npmCommand);
-            $process->setWorkingDirectory($webRootDirectory);
+            $process->setWorkingDirectory($rootDirectory);
             $process->run();
             if (!$process->isSuccessful())
             {
@@ -76,7 +76,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $this->logger->debug('GruntCacheWarmer: ' . $bowerCommand);
 
             $process = new Process($bowerCommand);
-            $process->setWorkingDirectory($webRootDirectory);
+            $process->setWorkingDirectory($rootDirectory);
             $process->run();
             if (!$process->isSuccessful())
             {
@@ -99,7 +99,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $this->logger->debug('GruntCacheWarmer: ' . $gruntCommand);
 
             $process = new Process($gruntCommand);
-            $process->setWorkingDirectory($webRootDirectory);
+            $process->setWorkingDirectory($rootDirectory);
             $process->run();
 
             if (!$process->isSuccessful())
