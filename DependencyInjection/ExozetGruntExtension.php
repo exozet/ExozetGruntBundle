@@ -27,10 +27,10 @@ class ExozetGruntExtension extends Extension
 
         $config_keys = array(
             'environments',
+            'binary_env_vars',
             'npm_binary_path',
             'bower_binary_path',
             'grunt_binary_path',
-            'grunt_env_vars',
             'grunt_task'
         );
 
@@ -41,22 +41,22 @@ class ExozetGruntExtension extends Extension
             );
         }
 
-        if (!empty($config['grunt_env_vars'])) {
-            $grunt_env_vars_string = implode(
+        if (!empty($config['binary_env_vars'])) {
+            $binary_env_vars_string = implode(
                 ' ',
                 array_map(
                     function ($v, $k) { return sprintf('%s="%s"', $k, $v); },
-                    $config['grunt_env_vars'],
-                    array_keys($config['grunt_env_vars'])
+                    $config['binary_env_vars'],
+                    array_keys($config['binary_env_vars'])
                 )
             );
         } else {
-            $grunt_env_vars_string = '';
+            $binary_env_vars_string = '';
         }
 
         $container->setParameter(
-            self::CONFIG_PREFIX . '.grunt_env_vars_string',
-            $grunt_env_vars_string
+            self::CONFIG_PREFIX . '.binary_env_vars_string',
+            $binary_env_vars_string
         );
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

@@ -32,6 +32,11 @@ exozet_grunt:
         # Default:
         - dev
 
+    # Use binaries with the following environment vars (key/value pairs)
+    binary_env_vars:      # Example: LANG:    en_US.UTF-8 for LANG="en_US.UTF-8"
+
+        LANG:                 en_US.UTF-8
+
     # The binary path where npm is located
     npm_binary_path:      npm # Example: /usr/bin/npm
 
