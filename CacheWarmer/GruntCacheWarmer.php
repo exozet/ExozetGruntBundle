@@ -38,7 +38,21 @@ class GruntCacheWarmer implements CacheWarmerInterface
         if (in_array($this->kernel->getEnvironment(), $container->getParameter('exozet_grunt.environments')))
         {
             $this->logger->debug('GruntCacheWarmer: Launching npm install');
-            $process = new Process($npmBinaryPath . ' install');
+
+            $npmCommand = trim(
+                implode(
+                    ' ',
+                    array(
+                        $binaryEnvVarsString,
+                        $npmBinaryPath,
+                        'install'
+                    )
+                )
+            );
+
+            $this->logger->debug('GruntCacheWarmer: ' . $npmCommand);
+
+            $process = new Process($npmCommand);
             $process->setWorkingDirectory($webRootDirectory);
             $process->run();
             if (!$process->isSuccessful())
@@ -48,7 +62,20 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
             $this->logger->debug('GruntCacheWarmer: Launching bower install');
 
-            $process = new Process($bowerBinaryPath . ' install --silent');
+            $bowerCommand = trim(
+                implode(
+                    ' ',
+                    array(
+                        $binaryEnvVarsString,
+                        $bowerBinaryPath,
+                        'install --silent'
+                    )
+                )
+            );
+
+            $this->logger->debug('GruntCacheWarmer: ' . $bowerCommand);
+
+            $process = new Process($bowerCommand);
             $process->setWorkingDirectory($webRootDirectory);
             $process->run();
             if (!$process->isSuccessful())
@@ -58,18 +85,20 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
             $this->logger->debug('GruntCacheWarmer: Launching grunt task ' . $gruntTask);
 
-            $command = trim(
+            $gruntCommand = trim(
                 implode(
                     ' ',
                     array(
-                        $gruntEnvVars,
+                        $binaryEnvVarsString,
                         $gruntBinaryPath,
                         $gruntTask
                     )
                 )
             );
 
-            $process = new Process($command);
+            $this->logger->debug('GruntCacheWarmer: ' . $gruntCommand);
+
+            $process = new Process($gruntCommand);
             $process->setWorkingDirectory($webRootDirectory);
             $process->run();
 
