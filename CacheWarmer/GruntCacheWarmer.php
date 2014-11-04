@@ -35,7 +35,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
         if (in_array($environment, $container->getParameter('grunt.environments')))
         {
-            $this->logger->debug('GruntCacheWarmer: Launing npm install');
+            $this->logger->debug('GruntCacheWarmer: Launching npm install');
             $process = new Process($npmBinaryPath . ' install');
             $process->setWorkingDirectory($webRootDirectory);
             $process->run();
@@ -44,7 +44,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
                 throw new \Exception('GruntBundle cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
-            $this->logger->debug('GruntCacheWarmer: Launing bower install');
+            $this->logger->debug('GruntCacheWarmer: Launching bower install');
 
             $process = new Process($bowerBinaryPath . ' install --silent');
             $process->setWorkingDirectory($webRootDirectory);
@@ -54,7 +54,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
                 throw new \Exception('GruntBundle cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
-            $this->logger->debug('GruntCacheWarmer: Launing grunt ' . $gruntTask);
+            $this->logger->debug('GruntCacheWarmer: Launching grunt task ' . $gruntTask);
 
             $process = new Process($gruntBinaryPath . ' ' . $gruntTask);
             $process->setWorkingDirectory($webRootDirectory);
