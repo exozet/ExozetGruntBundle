@@ -44,12 +44,7 @@ exozet_grunt:
     bower_binary_path:    bower # Example: /usr/bin/bower
 
     # The binary path where grunt is located
-    grunt_binary_path:    bower # Example: /usr/bin/grunt
-
-    # Use environment vars for grunt with key/value pairs
-    grunt_env_vars:       # Example: LANG:    en_US.UTF-8 for LANG="en_US.UTF-8"
-
-        LANG:                 en_US.UTF-8
+    grunt_binary_path:    grunt # Example: /usr/bin/grunt
 
     # The grunt task which should be executed
     grunt_task:           dev # Example: dev
