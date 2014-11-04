@@ -1,5 +1,5 @@
 services:
-    grunt.cache_warmer:
+    exozet_grunt.cache_warmer:
         class: Exozet\GruntBundle\CacheWarmer\GruntCacheWarmer
         arguments:
             - '@kernel'
