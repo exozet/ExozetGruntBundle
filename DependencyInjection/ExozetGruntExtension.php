@@ -15,6 +15,8 @@ use Symfony\Component\Process\Process;
  */
 class ExozetGruntExtension extends Extension
 {
+    const CONFIG_PREFIX = 'exozet_grunt';
+
     /**
      * {@inheritdoc}
      */
@@ -22,6 +24,40 @@ class ExozetGruntExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        $config_keys = array(
+            'environments',
+            'binary_env_vars',
+            'npm_binary_path',
+            'bower_binary_path',
+            'grunt_binary_path',
+            'grunt_task'
+        );
+
+        foreach ($config_keys as $config_key) {
+            $container->setParameter(
+                self::CONFIG_PREFIX . '.' . $config_key,
+                $config[$config_key]
+            );
+        }
+
+        if (!empty($config['binary_env_vars'])) {
+            $binary_env_vars_string = implode(
+                ' ',
+                array_map(
+                    function ($v, $k) { return sprintf('%s="%s"', $k, $v); },
+                    $config['binary_env_vars'],
+                    array_keys($config['binary_env_vars'])
+                )
+            );
+        } else {
+            $binary_env_vars_string = '';
+        }
+
+        $container->setParameter(
+            self::CONFIG_PREFIX . '.binary_env_vars_string',
+            $binary_env_vars_string
+        );
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

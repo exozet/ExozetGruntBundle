@@ -23,13 +23,31 @@ and the steps by grunt will be executed.
 ## Configuration
 
 ``` yaml
-parameters:
-    grunt.npm_binary_path: 'npm'
-    grunt.bower_binary_path: 'bower'
-    grunt.grunt_binary_path: 'LANG=en_US.UTF-8 grunt'
-    grunt.grunt_task: 'dev'
-    grunt.environments:
+# Default configuration for extension with alias: "exozet_grunt"
+exozet_grunt:
+
+    # The environments where the bundle should be executed
+    environments:         # Required
+
+        # Default:
         - dev
+
+    # Use binaries with the following environment vars (key/value pairs)
+    binary_env_vars:      # Example: LANG:    en_US.UTF-8 for LANG="en_US.UTF-8"
+
+        LANG:                 en_US.UTF-8
+
+    # The binary path where npm is located
+    npm_binary_path:      npm # Example: /usr/bin/npm
+
+    # The binary path where bower is located
+    bower_binary_path:    bower # Example: /usr/bin/bower
+
+    # The binary path where grunt is located
+    grunt_binary_path:    grunt # Example: /usr/bin/grunt
+
+    # The grunt task which should be executed
+    grunt_task:           dev # Example: dev
 ```
 
 This configuration will run the `dev` task ONLY in `dev` environment. The `LANG` environment variable is
