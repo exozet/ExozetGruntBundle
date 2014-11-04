@@ -26,7 +26,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
     function warmUp($cacheDir)
     {
         $container = $this->kernel->getContainer();
-        $webRootDirectory = realpath($this->kernel->getRootDir() . '/../web') . '/';
+        $rootDirectory = realpath($this->kernel->getRootDir() . '/..') . '/';
 
         $binaryEnvVars = $container->getparameter('exozet_grunt.binary_env_vars');
         $binaryEnvVarsString = $container->getparameter('exozet_grunt.binary_env_vars_string');
