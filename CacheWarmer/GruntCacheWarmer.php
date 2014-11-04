@@ -37,7 +37,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
         if (in_array($this->kernel->getEnvironment(), $container->getParameter('exozet_grunt.environments')))
         {
-            $this->logger->debug('GruntCacheWarmer: Launching npm install');
+            $this->logger->debug('[' . get_class($this) . '] Launching npm install');
 
             $npmCommand = trim(
                 implode(
@@ -50,17 +50,17 @@ class GruntCacheWarmer implements CacheWarmerInterface
                 )
             );
 
-            $this->logger->debug('GruntCacheWarmer: ' . $npmCommand);
+            $this->logger->debug('[' . get_class($this) . '] ' . $npmCommand);
 
             $process = new Process($npmCommand);
             $process->setWorkingDirectory($rootDirectory);
             $process->run();
             if (!$process->isSuccessful())
             {
-                throw new \Exception(__CLASS__ . ' cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(get_class($this) . ' cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
-            $this->logger->debug('GruntCacheWarmer: Launching bower install');
+            $this->logger->debug('[' . get_class($this) . '] Launching bower install');
 
             $bowerCommand = trim(
                 implode(
@@ -73,17 +73,17 @@ class GruntCacheWarmer implements CacheWarmerInterface
                 )
             );
 
-            $this->logger->debug('GruntCacheWarmer: ' . $bowerCommand);
+            $this->logger->debug('[' . get_class($this) . '] ' . $bowerCommand);
 
             $process = new Process($bowerCommand);
             $process->setWorkingDirectory($rootDirectory);
             $process->run();
             if (!$process->isSuccessful())
             {
-                throw new \Exception(__CLASS__ . ' cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(get_class($this) . ' cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
-            $this->logger->debug('GruntCacheWarmer: Launching grunt task ' . $gruntTask);
+            $this->logger->debug('[' . get_class($this) . '] Launching grunt task ' . $gruntTask);
 
             $gruntCommand = trim(
                 implode(
@@ -96,7 +96,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
                 )
             );
 
-            $this->logger->debug('GruntCacheWarmer: ' . $gruntCommand);
+            $this->logger->debug('[' . get_class($this) . '] ' . $gruntCommand);
 
             $process = new Process($gruntCommand);
             $process->setWorkingDirectory($rootDirectory);
@@ -104,10 +104,10 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
             if (!$process->isSuccessful())
             {
-                throw new \Exception(__CLASS__ . ' cannot execute grunt: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(get_class($this) . ' cannot execute grunt: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
-            $this->logger->debug('GruntCacheWarmer: done');
+            $this->logger->debug('[' . get_class($this) . '] finished');
         }
     }
 }
