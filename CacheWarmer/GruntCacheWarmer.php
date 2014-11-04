@@ -57,7 +57,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $process->run();
             if (!$process->isSuccessful())
             {
-                throw new \Exception('GruntBundle cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(__CLASS__ . ' cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
             $this->logger->debug('GruntCacheWarmer: Launching bower install');
@@ -80,7 +80,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $process->run();
             if (!$process->isSuccessful())
             {
-                throw new \Exception('GruntBundle cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(__CLASS__ . ' cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
             $this->logger->debug('GruntCacheWarmer: Launching grunt task ' . $gruntTask);
@@ -104,7 +104,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
             if (!$process->isSuccessful())
             {
-                throw new \Exception('GruntBundle cannot execute grunt: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+                throw new \Exception(__CLASS__ . ' cannot execute grunt: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
             }
 
             $this->logger->debug('GruntCacheWarmer: done');
