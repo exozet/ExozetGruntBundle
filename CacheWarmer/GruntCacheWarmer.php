@@ -27,10 +27,12 @@ class GruntCacheWarmer implements CacheWarmerInterface
     {
         $container = $this->kernel->getContainer();
         $webRootDirectory = realpath($this->kernel->getRootDir() . '/../web') . '/';
+
+        $binaryEnvVars = $container->getparameter('exozet_grunt.binary_env_vars');
+        $binaryEnvVarsString = $container->getparameter('exozet_grunt.binary_env_vars_string');
         $npmBinaryPath = $container->getParameter('exozet_grunt.npm_binary_path');
         $bowerBinaryPath = $container->getParameter('exozet_grunt.bower_binary_path');
         $gruntBinaryPath = $container->getParameter('exozet_grunt.grunt_binary_path');
-        $gruntEnvVars = $container->getParameter('exozet_grunt.grunt_env_vars');
         $gruntTask = $container->getParameter('exozet_grunt.grunt_task');
         $environment = $this->kernel->getEnvironment();
 
