@@ -34,9 +34,8 @@ class GruntCacheWarmer implements CacheWarmerInterface
         $bowerBinaryPath = $container->getParameter('exozet_grunt.bower_binary_path');
         $gruntBinaryPath = $container->getParameter('exozet_grunt.grunt_binary_path');
         $gruntTask = $container->getParameter('exozet_grunt.grunt_task');
-        $environment = $this->kernel->getEnvironment();
 
-        if (in_array($environment, $container->getParameter('exozet_grunt.environments')))
+        if (in_array($this->kernel->getEnvironment(), $container->getParameter('exozet_grunt.environments')))
         {
             $this->logger->debug('GruntCacheWarmer: Launching npm install');
             $process = new Process($npmBinaryPath . ' install');
