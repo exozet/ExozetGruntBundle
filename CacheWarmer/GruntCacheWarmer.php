@@ -57,7 +57,18 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
             $this->logger->debug('GruntCacheWarmer: Launching grunt task ' . $gruntTask);
 
-            $process = new Process($gruntBinaryPath . ' ' . $gruntTask);
+            $command = trim(
+                implode(
+                    ' ',
+                    array(
+                        $gruntEnvVars,
+                        $gruntBinaryPath,
+                        $gruntTask
+                    )
+                )
+            );
+
+            $process = new Process($command);
             $process->setWorkingDirectory($webRootDirectory);
             $process->run();
 
