@@ -27,13 +27,14 @@ class GruntCacheWarmer implements CacheWarmerInterface
     {
         $container = $this->kernel->getContainer();
         $webRootDirectory = realpath($this->kernel->getRootDir() . '/../web') . '/';
-        $npmBinaryPath = $container->getParameter('grunt.npm_binary_path');
-        $bowerBinaryPath = $container->getParameter('grunt.bower_binary_path');
-        $gruntBinaryPath = $container->getParameter('grunt.grunt_binary_path');
-        $gruntTask = $container->getParameter('grunt.grunt_task');
+        $npmBinaryPath = $container->getParameter('exozet_grunt.npm_binary_path');
+        $bowerBinaryPath = $container->getParameter('exozet_grunt.bower_binary_path');
+        $gruntBinaryPath = $container->getParameter('exozet_grunt.grunt_binary_path');
+        $gruntEnvVars = $container->getParameter('exozet_grunt.grunt_env_vars');
+        $gruntTask = $container->getParameter('exozet_grunt.grunt_task');
         $environment = $this->kernel->getEnvironment();
 
-        if (in_array($environment, $container->getParameter('grunt.environments')))
+        if (in_array($environment, $container->getParameter('exozet_grunt.environments')))
         {
             $this->logger->debug('GruntCacheWarmer: Launching npm install');
             $process = new Process($npmBinaryPath . ' install');
