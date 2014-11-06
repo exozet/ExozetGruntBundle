@@ -2,6 +2,8 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c5475291-00ec-425a-80ee-e205fb195358/big.png)](https://insight.sensiolabs.com/projects/c5475291-00ec-425a-80ee-e205fb195358)
 
+[![Code Climate](https://codeclimate.com/github/exozet/ExozetGruntBundle/badges/gpa.svg)](https://codeclimate.com/github/exozet/ExozetGruntBundle) [![Test Coverage](https://codeclimate.com/github/exozet/ExozetGruntBundle/badges/coverage.svg)](https://codeclimate.com/github/exozet/ExozetGruntBundle)
+
 This small bundle is meant to run the following steps, if the cache is cleaned and warmed up (optional):
 
 * npm install
