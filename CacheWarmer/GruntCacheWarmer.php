@@ -101,7 +101,16 @@ class GruntCacheWarmer implements CacheWarmerInterface
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new \Exception(get_class($this) . ' cannot execute command: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+            throw new \Exception(
+                implode(
+                    ' ',
+                    array(
+                        get_class($this),
+                        'cannot execute command:',
+                        $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput()
+                    )
+                )
+            );
         }
     }
 }
