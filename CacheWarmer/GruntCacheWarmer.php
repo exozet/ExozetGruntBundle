@@ -40,17 +40,14 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function launchNpmInstall()
     {
-        $binaryEnvVarsString = $this->container->getParameter('exozet_grunt.binary_env_vars_string');
-        $npmBinaryPath = $this->container->getParameter('exozet_grunt.npm_binary_path');
-
         $this->logger->debug('[' . get_class($this) . '] Launching npm install');
 
         $npmCommand = trim(
             implode(
                 ' ',
                 array(
-                    $binaryEnvVarsString,
-                    $npmBinaryPath,
+                    $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
+                    $this->container->getParameter('exozet_grunt.npm_binary_path'),
                     'install'
                 )
             )
@@ -61,17 +58,14 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function launchBowerInstall()
     {
-        $binaryEnvVarsString = $this->container->getParameter('exozet_grunt.binary_env_vars_string');
-        $bowerBinaryPath = $this->container->getParameter('exozet_grunt.bower_binary_path');
-
         $this->logger->debug('[' . get_class($this) . '] Launching bower install');
 
         $bowerCommand = trim(
             implode(
                 ' ',
                 array(
-                    $binaryEnvVarsString,
-                    $bowerBinaryPath,
+                    $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
+                    $this->container->getParameter('exozet_grunt.bower_binary_path'),
                     'install --silent'
                 )
             )
@@ -82,19 +76,15 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function executeGruntTask()
     {
-        $binaryEnvVarsString = $this->container->getParameter('exozet_grunt.binary_env_vars_string');
-        $gruntBinaryPath = $this->container->getParameter('exozet_grunt.grunt_binary_path');
-        $gruntTask = $this->container->getParameter('exozet_grunt.grunt_task');
-
         $this->logger->debug('[' . get_class($this) . '] Launching grunt task ' . $gruntTask);
 
         $gruntCommand = trim(
             implode(
                 ' ',
                 array(
-                    $binaryEnvVarsString,
-                    $gruntBinaryPath,
-                    $gruntTask
+                    $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
+                    $this->container->getParameter('exozet_grunt.grunt_binary_path'),
+                    $this->container->getParameter('exozet_grunt.grunt_task')
                 )
             )
         );
