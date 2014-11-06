@@ -40,7 +40,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function launchNpmInstall()
     {
-        $this->logger->debug('[' . get_class($this) . '] Launching npm install');
+        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
 
         $npmCommand = trim(
             implode(
@@ -58,7 +58,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function launchBowerInstall()
     {
-        $this->logger->debug('[' . get_class($this) . '] Launching bower install');
+        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
 
         $bowerCommand = trim(
             implode(
@@ -76,7 +76,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function executeGruntTask()
     {
-        $this->logger->debug('[' . get_class($this) . '] Launching grunt task');
+        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
 
         $gruntCommand = trim(
             implode(
