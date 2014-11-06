@@ -7,12 +7,24 @@ php:
   - 5.6
   - hhvm
 
+env:
+   - SYMFONY_VERSION=2.3.*
+   - SYMFONY_VERSION=2.4.*
+   - SYMFONY_VERSION=2.5.*
+   - SYMFONY_VERSION=2.6.*
+   - SYMFONY_VERSION=dev-master
+
+matrix:
+    allow_failures:
+        - php: hhvm
+        - env: SYMFONY_VERSION=dev-master
+
 install:
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
 
 script:
-    - bin/phpcs --standard=PSR2 --extensions=php
+    - bin/phpcs --standard=PSR2 --extensions=php --ignore=*/vendor/*
     - phpunit -c ./
 
 after_success: CODECLIMATE_REPO_TOKEN=a34e168b2eb0815bafa1d877b89e25b0fc42e6ffe309650da4d65f4fddf0f8f1 ./bin/test-reporter
