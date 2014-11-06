@@ -76,7 +76,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function executeGruntTask()
     {
-        $this->logger->debug('[' . get_class($this) . '] Launching grunt task ' . $gruntTask);
+        $this->logger->debug('[' . get_class($this) . '] Launching grunt task');
 
         $gruntCommand = trim(
             implode(
