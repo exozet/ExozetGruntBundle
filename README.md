@@ -1,6 +1,6 @@
 # ExozetGruntBundle
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c5475291-00ec-425a-80ee-e205fb195358/big.png)](https://insight.sensiolabs.com/projects/c5475291-00ec-425a-80ee-e205fb195358)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f33fb53d-106d-4bf9-88e4-97ab5059df49/big.png)](https://insight.sensiolabs.com/projects/f33fb53d-106d-4bf9-88e4-97ab5059df49)
 
 [![Code Climate](https://codeclimate.com/github/exozet/ExozetGruntBundle/badges/gpa.svg)](https://codeclimate.com/github/exozet/ExozetGruntBundle) [![Test Coverage](https://codeclimate.com/github/exozet/ExozetGruntBundle/badges/coverage.svg)](https://codeclimate.com/github/exozet/ExozetGruntBundle)
 
