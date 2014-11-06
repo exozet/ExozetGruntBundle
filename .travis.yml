@@ -12,7 +12,7 @@ install:
   - php composer.phar install --dev
 
 script:
-    - phpcs --standard=PSR2 --extensions=php
+    - bin/phpcs --standard=PSR2 --extensions=php
     - phpunit -c ./
 
 after_success: CODECLIMATE_REPO_TOKEN=a34e168b2eb0815bafa1d877b89e25b0fc42e6ffe309650da4d65f4fddf0f8f1 ./bin/test-reporter
