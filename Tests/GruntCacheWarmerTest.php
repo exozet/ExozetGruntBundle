@@ -8,9 +8,11 @@ use Buzz\Message\Response;
 class GruntCacheWarmerTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Just for Travis-CI setup
+     *
      * @test
      */
-    protected function foo(){
+    public function toBeIplemented(){
         $true = true;
         $this->assertEquals(true, $true);
     }
