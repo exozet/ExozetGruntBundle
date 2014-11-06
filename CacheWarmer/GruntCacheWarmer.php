@@ -33,6 +33,8 @@ class GruntCacheWarmer implements CacheWarmerInterface
             $this->launchNpmInstall();
             $this->launchBowerInstall();
             $this->executeGruntTask();
+
+            $this->logger->debug('[' . get_class($this) . '] finished');
         }
     }
 
@@ -54,14 +56,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             )
         );
 
-        $this->logger->debug('[' . get_class($this) . '] ' . $npmCommand);
-
-        $process = new Process($npmCommand);
-        $process->setWorkingDirectory($this->rootDirectory);
-        $process->run();
-        if (!$process->isSuccessful()) {
-            throw new \Exception(get_class($this) . ' cannot execute node: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
-        }
+        $this->executeCommand($npmCommand);
     }
 
     protected function launchBowerInstall()
@@ -82,14 +77,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
             )
         );
 
-        $this->logger->debug('[' . get_class($this) . '] ' . $bowerCommand);
-
-        $process = new Process($bowerCommand);
-        $process->setWorkingDirectory($this->rootDirectory);
-        $process->run();
-        if (!$process->isSuccessful()) {
-            throw new \Exception(get_class($this) . ' cannot execute bower: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
-        }
+        $this->executeCommand($bowerCommand);
     }
 
     protected function executeGruntTask()
@@ -111,16 +99,19 @@ class GruntCacheWarmer implements CacheWarmerInterface
             )
         );
 
-        $this->logger->debug('[' . get_class($this) . '] ' . $gruntCommand);
+        $this->executeCommand($gruntCommand);
+    }
 
-        $process = new Process($gruntCommand);
+    protected function executeCommand($command)
+    {
+        $this->logger->debug('[' . get_class($this) . '] ' . $command);
+
+        $process = new Process($command);
         $process->setWorkingDirectory($this->rootDirectory);
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new \Exception(get_class($this) . ' cannot execute grunt: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
+            throw new \Exception(get_class($this) . ' cannot execute command: ' . $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput());
         }
-
-        $this->logger->debug('[' . get_class($this) . '] finished');
     }
 }
