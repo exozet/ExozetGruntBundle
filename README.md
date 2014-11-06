@@ -54,8 +54,8 @@ exozet_grunt:
     grunt_task:           dev # Example: dev
 ```
 
-This configuration will run the `dev` task ONLY in `dev` environment. The `LANG` environment variable is
-e.g. required for compass.
+This default configuration will run the `dev` task ONLY in `dev` environment.
+The `LANG` environment variable is e.g. required for compass.
 
 ## License
 
