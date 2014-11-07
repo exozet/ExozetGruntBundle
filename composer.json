@@ -13,7 +13,6 @@
     "autoload":     {
         "psr-4": { "Exozet\\GruntBundle\\": "" }
     },
-    "target-dir": "Exozet/GruntBundle",
     "config": {
         "bin-dir": "bin"
     },
