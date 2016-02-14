@@ -2,10 +2,10 @@
 
 namespace Exozet\GruntBundle\CacheWarmer;
 
-use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
-use Symfony\Component\Process\Process;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Process\Process;
 
 class GruntCacheWarmer implements CacheWarmerInterface
 {
@@ -14,42 +14,42 @@ class GruntCacheWarmer implements CacheWarmerInterface
     protected $logger;
     protected $rootDirectory;
 
-    function __construct(KernelInterface $kernel, LoggerInterface $logger)
+    public function __construct(KernelInterface $kernel, LoggerInterface $logger)
     {
         $this->kernel = $kernel;
         $this->logger = $logger;
         $this->container = $this->kernel->getContainer();
-        $this->rootDirectory = realpath($this->kernel->getRootDir() . '/..') . '/';
+        $this->rootDirectory = realpath($this->kernel->getRootDir().'/..').'/';
     }
 
-    function isOptional()
+    public function isOptional()
     {
         return true;
     }
 
-    function warmUp($cacheDir)
+    public function warmUp($cacheDir)
     {
         if (in_array($this->kernel->getEnvironment(), $this->container->getParameter('exozet_grunt.environments'))) {
             $this->launchNpmInstall();
             $this->launchBowerInstall();
             $this->executeGruntTask();
 
-            $this->logger->debug('[' . get_class($this) . '] finished');
+            $this->logger->debug('['.get_class($this).'] finished');
         }
     }
 
     protected function launchNpmInstall()
     {
-        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
+        $this->logger->debug('['.get_class($this).'] '.__FUNCTION__);
 
         $npmCommand = trim(
             implode(
                 ' ',
-                array(
+                [
                     $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
                     $this->container->getParameter('exozet_grunt.npm_binary_path'),
-                    'install'
-                )
+                    'install',
+                ]
             )
         );
 
@@ -58,16 +58,16 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function launchBowerInstall()
     {
-        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
+        $this->logger->debug('['.get_class($this).'] '.__FUNCTION__);
 
         $bowerCommand = trim(
             implode(
                 ' ',
-                array(
+                [
                     $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
                     $this->container->getParameter('exozet_grunt.bower_binary_path'),
-                    'install --silent'
-                )
+                    'install --silent',
+                ]
             )
         );
 
@@ -76,16 +76,16 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function executeGruntTask()
     {
-        $this->logger->debug('[' . get_class($this) . '] ' . __FUNCTION__);
+        $this->logger->debug('['.get_class($this).'] '.__FUNCTION__);
 
         $gruntCommand = trim(
             implode(
                 ' ',
-                array(
+                [
                     $this->container->getParameter('exozet_grunt.binary_env_vars_string'),
                     $this->container->getParameter('exozet_grunt.grunt_binary_path'),
-                    $this->container->getParameter('exozet_grunt.grunt_task')
-                )
+                    $this->container->getParameter('exozet_grunt.grunt_task'),
+                ]
             )
         );
 
@@ -94,7 +94,7 @@ class GruntCacheWarmer implements CacheWarmerInterface
 
     protected function executeCommand($command)
     {
-        $this->logger->debug('[' . get_class($this) . '] ' . $command);
+        $this->logger->debug('['.get_class($this).'] '.$command);
 
         $process = new Process($command);
         $process->setWorkingDirectory($this->rootDirectory);
@@ -104,11 +104,11 @@ class GruntCacheWarmer implements CacheWarmerInterface
             throw new \Exception(
                 implode(
                     ' ',
-                    array(
+                    [
                         get_class($this),
                         'cannot execute command:',
-                        $process->getOutput() . PHP_EOL . PHP_EOL . $process->getErrorOutput()
-                    )
+                        $process->getOutput().PHP_EOL.PHP_EOL.$process->getErrorOutput(),
+                    ]
                 )
             );
         }
