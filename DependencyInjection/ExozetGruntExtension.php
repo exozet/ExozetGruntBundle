@@ -2,13 +2,13 @@
 
 namespace Exozet\GruntBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
@@ -24,18 +24,18 @@ class ExozetGruntExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $configKeys = array(
+        $configKeys = [
             'environments',
             'binary_env_vars',
             'npm_binary_path',
             'bower_binary_path',
             'grunt_binary_path',
-            'grunt_task'
-        );
+            'grunt_task',
+        ];
 
         foreach ($configKeys as $configKey) {
             $container->setParameter(
-                self::CONFIG_PREFIX . '.' . $configKey,
+                self::CONFIG_PREFIX.'.'.$configKey,
                 $config[$configKey]
             );
         }
@@ -54,7 +54,7 @@ class ExozetGruntExtension extends Extension
         }
 
         $container->setParameter(
-            self::CONFIG_PREFIX . '.binary_env_vars_string',
+            self::CONFIG_PREFIX.'.binary_env_vars_string',
             $binaryEnvVarsString
         );
 
